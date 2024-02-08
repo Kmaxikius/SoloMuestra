@@ -39,10 +39,9 @@ const mostrarDispositivos = (dispositivos,id) => {
                 <div>
                     <p>Nombre: ${dispositivo.nombreEje} id: ${dispositivo.idDispo}</p>
                     <p>Estado: ${dispositivo.estado}</p>
-                    <button onclick="eliminarDispositivo('${dispositivo.idDispo}','${id}','${dispositivo.tipo}')">Eliminar</button>
-                    <button onclick="modificarDispositivo('${dispositivo.idDispo}','${id}','${dispositivo.tipo}')">Modificar</button>
+                    <button onclick="abrirNuevaPestana('${dispositivo.idDispo}','${id}','${dispositivo.tipo}','${dispositivo.estado}')">Ver estado</button>  
                    
-                    
+  
                 </div>
         `;
     });
@@ -52,3 +51,8 @@ const mostrarDispositivos = (dispositivos,id) => {
 botonDocumento.addEventListener('click', async () => {
     await getDataChanged_collection(coleccion, mostrarDatos);
 });
+
+window.abrirNuevaPestana = (idDispo, id, tipo,estado)=> {
+    const nuevaPestana = window.open(`http://127.0.0.1:5500/SoloMuestra/DatosDisp/index.html?idDispo=${idDispo}&idesp=${id}&tipo=${tipo}&estado=${estado}`);
+    nuevaPestana.focus();
+}
